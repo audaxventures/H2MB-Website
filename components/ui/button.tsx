@@ -31,7 +31,7 @@ const variantStyles: Record<Variant, string> = {
 };
 
 const base =
-  "inline-flex items-center gap-2 px-6 py-3.5 text-sm font-semibold tracking-wide uppercase transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2";
+  "inline-flex items-center gap-2 rounded-md px-6 py-3.5 text-sm font-semibold tracking-wide uppercase transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2";
 
 type LinkProps = BaseProps &
   Omit<ComponentProps<typeof Link>, "className" | "children" | "onClick">;

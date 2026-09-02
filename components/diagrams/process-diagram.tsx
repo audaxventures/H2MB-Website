@@ -44,7 +44,7 @@ export function ProcessDiagram({
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.4, delay: i * 0.06 }}
             className={cn(
-              "flex flex-1 flex-col items-start gap-3 border p-6",
+              "flex flex-1 flex-col items-start gap-3 rounded-xl border p-6",
               tone === "light" ? "border-linegrey bg-white" : "border-white/10 bg-white/[0.04]",
             )}
           >

@@ -60,7 +60,7 @@ export default function HydrogenPage() {
             dek="Hydrogen is an energy carrier that can be produced through different processes. Green hydrogen is made by using renewable electricity to separate water into hydrogen and oxygen through electrolysis. When produced this way, it can offer a low-carbon energy pathway for suitable applications."
           />
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            <div className="flex flex-col gap-3 border border-linegrey bg-coolgrey p-8">
+            <div className="flex flex-col gap-3 rounded-xl border border-linegrey bg-coolgrey p-8">
               <p className="text-xs font-semibold uppercase tracking-[0.15em] text-ink-700">
                 Traditional Hydrogen Production
               </p>
@@ -68,7 +68,7 @@ export default function HydrogenPage() {
                 Often relies on fossil fuels and may create significant greenhouse gas emissions.
               </p>
             </div>
-            <div className="flex flex-col gap-3 border border-h2green-600/30 bg-h2green-50 p-8">
+            <div className="flex flex-col gap-3 rounded-xl border border-h2green-600/30 bg-h2green-50 p-8">
               <p className="text-xs font-semibold uppercase tracking-[0.15em] text-h2green-600">
                 Green Hydrogen Production
               </p>

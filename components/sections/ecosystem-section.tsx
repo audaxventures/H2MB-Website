@@ -10,7 +10,7 @@ export function EcosystemDisplay() {
         {approved.map((partner) => (
           <div
             key={partner.name}
-            className="flex aspect-[3/2] items-center justify-center border border-linegrey bg-white p-4"
+            className="flex aspect-[3/2] items-center justify-center rounded-xl border border-linegrey bg-white p-4"
           >
             <Image
               src={partner.logo.src}

@@ -8,7 +8,7 @@ export function OpportunityDiagram() {
     <div className="flex flex-col items-stretch gap-0 md:flex-row md:items-center">
       {nodes.map((node, i) => (
         <div key={node} className="flex flex-1 flex-col items-center md:flex-row">
-          <div className="flex w-full flex-1 flex-col items-center gap-2 border border-white/15 bg-white/[0.04] px-6 py-8 text-center">
+          <div className="flex w-full flex-1 flex-col items-center gap-2 rounded-xl border border-white/15 bg-white/[0.04] px-6 py-8 text-center">
             <p className="font-display text-lg md:text-xl font-semibold uppercase tracking-wide text-white">
               {node}
             </p>

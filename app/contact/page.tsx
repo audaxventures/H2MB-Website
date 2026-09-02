@@ -54,7 +54,7 @@ export default function ContactPage() {
             title="Start a conversation."
             dek="Tell us a little about your organization, your area of interest and how we can help direct your inquiry."
           />
-          <div className="border border-linegrey bg-white p-6 md:p-10">
+          <div className="rounded-xl border border-linegrey bg-white p-6 md:p-10">
             <Suspense fallback={null}>
               <ContactForm />
             </Suspense>

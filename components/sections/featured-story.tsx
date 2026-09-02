@@ -17,7 +17,7 @@ export function FeaturedStory({ article }: { article: NewsArticle }) {
   return (
     <Link
       href={`/news/${article.slug}`}
-      className="group grid grid-cols-1 overflow-hidden border border-linegrey bg-white md:grid-cols-2"
+      className="group grid grid-cols-1 overflow-hidden rounded-xl border border-linegrey bg-white md:grid-cols-2"
     >
       <div className="relative aspect-[16/10] w-full bg-navy-950 md:aspect-auto">
         {article.image.isPlaceholder ? (
