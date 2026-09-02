@@ -12,8 +12,12 @@ export interface ProcessStep {
 /**
  * Responsive, original line-drawing process diagram. Horizontal with arrow
  * connectors on desktop; collapses to a vertical sequence on mobile
- * (brief Section 3 "Motion", Section 13 responsive rules). Respects
- * prefers-reduced-motion by skipping the reveal animation entirely.
+ * (brief Section 3 "Motion", Section 13 responsive rules).
+ *
+ * Content is always rendered fully visible (never opacity: 0) so it never
+ * depends on JavaScript or an intersection trigger to be readable — the
+ * reveal is a purely decorative, non-blocking upward shift, and is skipped
+ * entirely under prefers-reduced-motion.
  */
 export function ProcessDiagram({
   steps,
@@ -35,10 +39,10 @@ export function ProcessDiagram({
       {steps.map((step, i) => (
         <div key={step.label} className="flex flex-1 flex-col md:flex-row md:items-center">
           <motion.div
-            initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-            whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+            initial={{ y: 0 }}
+            whileInView={reduceMotion ? undefined : { y: [10, 0] }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.5, delay: i * 0.08 }}
+            transition={{ duration: 0.4, delay: i * 0.06 }}
             className={cn(
               "flex flex-1 flex-col items-start gap-3 border p-6",
               tone === "light" ? "border-linegrey bg-white" : "border-white/10 bg-white/[0.04]",

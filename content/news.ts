@@ -204,6 +204,27 @@ export const newsArticles: NewsArticle[] = [
   },
 ];
 
+export const newsCategoryIntros: Record<
+  "H2MB News" | "Insights" | "Media",
+  { eyebrow: string; title: string; dek: string }
+> = {
+  "H2MB News": {
+    eyebrow: "H2MB News",
+    title: "Company updates and project progress.",
+    dek: "Announcements, development milestones, collaborations, events and other updates from H2MB.",
+  },
+  Insights: {
+    eyebrow: "Insights",
+    title: "Perspectives on Manitoba's evolving hydrogen economy.",
+    dek: "Ideas and analysis on green hydrogen, transportation, infrastructure, energy security and the development of practical regional markets.",
+  },
+  Media: {
+    eyebrow: "H2MB in the Media",
+    title: "Coverage and conversations.",
+    dek: "Selected interviews, articles and media coverage featuring H2MB and its work.",
+  },
+};
+
 export function getArticleBySlug(slug: string) {
   return newsArticles.find((a) => a.slug === slug);
 }

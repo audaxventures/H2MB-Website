@@ -14,7 +14,7 @@ export function PartnerPathwayCards() {
             <p className="text-sm leading-relaxed text-ink-700">{pathway.description}</p>
           </div>
           <Button
-            href={`/contact?topic=${encodeURIComponent(pathway.presetTopic)}#contact-form`}
+            href={`/contact?topic=${encodeURIComponent(pathway.presetTopic)}#contact`}
             variant="secondary"
             showArrow={false}
             className="w-full justify-center text-xs"
