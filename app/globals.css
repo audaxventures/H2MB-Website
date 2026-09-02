@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@theme {
+  /* Primary — deep navy / near-black */
+  --color-navy-950: #0a1420;
+  --color-navy-900: #0f1c2e;
+  --color-navy-800: #16283f;
+  --color-navy-700: #1f3652;
+  --color-navy-600: #2b4666;
+
+  /* Accent — H2MB green (placeholder brand hex, see docs/build-log.md) */
+  --color-h2green-700: #146138;
+  --color-h2green-600: #1b7a45;
+  --color-h2green-500: #279256;
+  --color-h2green-400: #3fab6c;
+  --color-h2green-100: #e3f2e8;
+  --color-h2green-50: #f2f9f4;
+
+  /* Backgrounds */
+  --color-warmwhite: #faf8f4;
+  --color-coolgrey: #f1f2f4;
+  --color-linegrey: #dde1e5;
+
+  /* Text */
+  --color-ink-900: #12181f;
+  --color-ink-700: #3a4450;
+  --color-ink-500: #667080;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+
+  --container-content: 1400px;
+
+  --animate-fade-up: fade-up 0.6s ease-out forwards;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--color-linegrey);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--color-warmwhite);
+    color: var(--color-ink-900);
+    font-family: var(--font-sans);
+  }
+
+  ::selection {
+    background: var(--color-h2green-600);
+    color: white;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-h2green-600);
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
