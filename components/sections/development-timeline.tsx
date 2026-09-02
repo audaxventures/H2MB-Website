@@ -55,8 +55,8 @@ export function DevelopmentTimeline({
                 "mb-1 text-[11px] font-semibold uppercase tracking-wide",
                 stage.status === "upcoming"
                   ? tone === "light"
-                    ? "text-ink-500"
-                    : "text-white/50"
+                    ? "text-ink-700"
+                    : "text-white/60"
                   : tone === "light"
                     ? "text-h2green-600"
                     : "text-h2green-400",

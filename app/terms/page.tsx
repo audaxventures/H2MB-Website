@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { LegalPage } from "@/components/ui/legal-page";
-import { contactConfig } from "@/content/config";
+import { ContactEmailLink } from "@/components/ui/contact-email-link";
 
 export const metadata: Metadata = {
   title: "Terms of Use",
@@ -43,10 +43,7 @@ export default function TermsPage() {
       <h2 className="font-display text-xl font-semibold text-navy-950">Contact</h2>
       <p>
         Questions about these placeholder terms can be directed to{" "}
-        <a href={`mailto:${contactConfig.email}`} className="underline underline-offset-2">
-          {contactConfig.email}
-        </a>
-        .
+        <ContactEmailLink className="underline underline-offset-2" />.
       </p>
     </LegalPage>
   );

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { LegalPage } from "@/components/ui/legal-page";
-import { contactConfig } from "@/content/config";
+import { ContactEmailLink } from "@/components/ui/contact-email-link";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -49,10 +49,7 @@ export default function PrivacyPage() {
       <p>
         Questions about this placeholder policy, or about information submitted through this
         website, can be directed to{" "}
-        <a href={`mailto:${contactConfig.email}`} className="underline underline-offset-2">
-          {contactConfig.email}
-        </a>
-        .
+        <ContactEmailLink className="underline underline-offset-2" />.
       </p>
     </LegalPage>
   );

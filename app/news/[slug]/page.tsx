@@ -9,6 +9,7 @@ import { ShareLinks } from "@/components/sections/share-links";
 import { NewsCard } from "@/components/sections/news-card";
 import { PartnerCta } from "@/components/sections/partner-cta";
 import { ArticleViewTracker } from "@/components/article-view-tracker";
+import { JsonLd } from "@/components/json-ld";
 import { newsArticles, getArticleBySlug, getRelatedArticles } from "@/content/news";
 import { siteConfig } from "@/content/config";
 
@@ -59,6 +60,21 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   return (
     <>
       <ArticleViewTracker slug={article.slug} category={article.category} />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "NewsArticle",
+          headline: article.title,
+          description: article.excerpt,
+          datePublished: article.date,
+          url: articleUrl,
+          publisher: {
+            "@type": "Organization",
+            name: siteConfig.name,
+            url: siteConfig.url,
+          },
+        }}
+      />
       <Section background="white" className="pt-32 md:pt-40">
         <Container className="max-w-3xl">
           <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-wide text-h2green-600">

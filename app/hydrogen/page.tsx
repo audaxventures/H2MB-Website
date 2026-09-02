@@ -61,7 +61,7 @@ export default function HydrogenPage() {
           />
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div className="flex flex-col gap-3 border border-linegrey bg-coolgrey p-8">
-              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-ink-500">
+              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-ink-700">
                 Traditional Hydrogen Production
               </p>
               <p className="text-base leading-relaxed text-ink-700">

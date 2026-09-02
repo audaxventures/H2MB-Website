@@ -14,6 +14,15 @@ export default function Header() {
   const pathname = usePathname();
   const isHome = pathname === "/";
 
+  // Close the mobile menu when the route changes, without a setState-in-effect:
+  // detect the pathname change during render (a sanctioned React pattern for
+  // deriving state from a changing prop/value) rather than in a useEffect.
+  const [lastPathname, setLastPathname] = useState(pathname);
+  if (pathname !== lastPathname) {
+    setLastPathname(pathname);
+    setMenuOpen(false);
+  }
+
   useEffect(() => {
     if (!isHome) return;
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -23,13 +32,20 @@ export default function Header() {
   }, [isHome]);
 
   useEffect(() => {
-    setMenuOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
+    // Prevent keyboard/screen-reader focus from reaching page content
+    // visually covered by the mobile menu panel.
+    const main = document.getElementById("main-content");
+    const footer = document.querySelector("footer");
+    for (const el of [main, footer]) {
+      if (!el) continue;
+      if (menuOpen) el.setAttribute("inert", "");
+      else el.removeAttribute("inert");
+    }
     return () => {
       document.body.style.overflow = "";
+      main?.removeAttribute("inert");
+      footer?.removeAttribute("inert");
     };
   }, [menuOpen]);
 

@@ -4,7 +4,7 @@ import { useActionState, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { CheckCircle2 } from "lucide-react";
 import { contactTopics, type ContactTopic } from "@/content/contact";
-import { contactConfig } from "@/content/config";
+import { ContactEmailLink } from "@/components/ui/contact-email-link";
 import { submitContactForm } from "@/lib/contact-form";
 import { initialContactFormState } from "@/lib/contact-form-state";
 import { ButtonEl } from "@/components/ui/button";
@@ -49,17 +49,14 @@ export function ContactForm() {
   const [topic, setTopic] = useState<string>(
     presetTopic && (contactTopics as readonly string[]).includes(presetTopic) ? presetTopic : "",
   );
-  const renderedAtRef = useRef<number>(0);
+  const [renderedAt] = useState(() => Date.now());
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
-    renderedAtRef.current = Date.now();
-  }, []);
-
-  useEffect(() => {
+    // The form unmounts (replaced by the success message below) once
+    // state.status becomes "success", so this only needs to fire the
+    // analytics event — there's no form left to reset.
     if (state.status === "success") {
-      formRef.current?.reset();
-      setTopic("");
       trackEvent({ name: "form_submit_success", form: "contact" });
     }
   }, [state.status]);
@@ -82,7 +79,7 @@ export function ContactForm() {
 
   return (
     <form ref={formRef} action={formAction} noValidate className="flex flex-col gap-6">
-      <input type="hidden" name="rendered_at" value={renderedAtRef.current} />
+      <input type="hidden" name="rendered_at" value={renderedAt} />
       <div className="sr-only" aria-hidden="true">
         <label htmlFor="company_website">Leave this field empty</label>
         <input type="text" id="company_website" name="company_website" tabIndex={-1} autoComplete="off" />
@@ -205,11 +202,7 @@ export function ContactForm() {
       </ButtonEl>
 
       <p className="text-xs text-ink-500">
-        Prefer email? Reach us directly at{" "}
-        <a href={`mailto:${contactConfig.email}`} className="underline">
-          {contactConfig.email}
-        </a>
-        .
+        Prefer email? Reach us directly at <ContactEmailLink className="underline" />.
       </p>
     </form>
   );

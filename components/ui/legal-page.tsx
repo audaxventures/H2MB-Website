@@ -1,6 +1,6 @@
 import { Container } from "@/components/ui/container";
 import { Eyebrow } from "@/components/ui/section-heading";
-import { contactConfig } from "@/content/config";
+import { ContactEmailLink } from "@/components/ui/contact-email-link";
 
 export function LegalPage({
   eyebrow,
@@ -34,10 +34,7 @@ export function LegalPage({
 
         <p className="mt-10 text-sm text-ink-500">
           Questions about this document can be sent to{" "}
-          <a href={`mailto:${contactConfig.email}`} className="underline underline-offset-2">
-            {contactConfig.email}
-          </a>
-          .
+          <ContactEmailLink className="underline underline-offset-2" />.
         </p>
       </Container>
     </div>

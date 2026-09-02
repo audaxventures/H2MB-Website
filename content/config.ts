@@ -11,9 +11,13 @@ export const siteConfig = {
   locale: "en-CA",
 };
 
+// Brief Section 4/11: never fabricate a contact detail that could be
+// mistaken for a real, confirmed one. Until H2MB supplies real values via
+// env vars, these render as visibly bracketed placeholders (matching the
+// brief's own "[APPROVED EMAIL ADDRESS]" convention) rather than a
+// plausible-looking but invented email/phone/link.
 export const contactConfig = {
-  // PLACEHOLDER — replace with H2MB-approved public contact details.
-  email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "info@h2mb.ca",
+  email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "[APPROVED GENERAL EMAIL]",
   phone: process.env.NEXT_PUBLIC_CONTACT_PHONE || "", // leave blank until approved for public release
   city: "Winnipeg, Manitoba",
   country: "Canada",
@@ -21,8 +25,12 @@ export const contactConfig = {
 };
 
 export const socialLinks = {
-  // PLACEHOLDER — confirm final LinkedIn company URL.
-  linkedin: process.env.NEXT_PUBLIC_LINKEDIN_URL || "https://www.linkedin.com/company/h2mb",
+  // No confirmed LinkedIn handle exists yet — link to a search rather than
+  // guessing a company URL slug, which could point visitors to the wrong
+  // (or someone else's) page.
+  linkedin:
+    process.env.NEXT_PUBLIC_LINKEDIN_URL ||
+    "https://www.linkedin.com/search/results/companies/?keywords=H2MB",
 };
 
 export const footerLegal = {

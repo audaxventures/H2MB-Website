@@ -25,7 +25,6 @@ function sendToProvider(event: AnalyticsEvent) {
   const analyticsId = process.env.NEXT_PUBLIC_ANALYTICS_ID;
   if (!analyticsId) {
     if (process.env.NODE_ENV === "development") {
-      // eslint-disable-next-line no-console
       console.info("[analytics:dry-run]", event);
     }
     return;

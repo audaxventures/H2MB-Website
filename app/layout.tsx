@@ -3,7 +3,8 @@ import { Inter, Archivo } from "next/font/google";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import { AnalyticsLoader } from "@/components/analytics-loader";
-import { siteConfig } from "@/content/config";
+import { JsonLd } from "@/components/json-ld";
+import { siteConfig, socialLinks } from "@/content/config";
 import "./globals.css";
 
 const inter = Inter({
@@ -34,9 +35,6 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
   },
-  icons: {
-    icon: "/favicon.ico",
-  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -46,6 +44,17 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${inter.variable} ${archivo.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-warmwhite text-ink-900">
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: siteConfig.name,
+            legalName: "H2MB Inc.",
+            url: siteConfig.url,
+            description: siteConfig.description,
+            sameAs: [socialLinks.linkedin],
+          }}
+        />
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-h2green-600 focus:text-white focus:px-4 focus:py-2 focus:rounded"

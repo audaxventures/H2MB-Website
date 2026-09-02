@@ -8,6 +8,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { PartnerPathwayCards } from "@/components/sections/partner-pathway-cards";
 import { ContactForm } from "@/components/forms/contact-form";
 import { OutboundLink } from "@/components/ui/outbound-link";
+import { ContactEmailLink } from "@/components/ui/contact-email-link";
 import { PrairieHorizon } from "@/components/art/prairie-horizon";
 import { contactConfig, socialLinks } from "@/content/config";
 
@@ -68,9 +69,7 @@ export default function ContactPage() {
             <p>{contactConfig.city}</p>
             <p>{contactConfig.country}</p>
             <div className="mt-4 flex flex-col gap-1">
-              <a href={`mailto:${contactConfig.email}`} className="font-medium text-navy-950 underline underline-offset-4">
-                {contactConfig.email}
-              </a>
+              <ContactEmailLink className="font-medium text-navy-950 underline underline-offset-4" />
               {contactConfig.phone && (
                 <a href={`tel:${contactConfig.phone}`} className="font-medium text-navy-950 underline underline-offset-4">
                   {contactConfig.phone}
