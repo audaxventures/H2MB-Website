@@ -14,9 +14,9 @@ export function ConceptualFacility({
   className?: string;
   tone?: "dark" | "light";
 }) {
-  const line = tone === "dark" ? "#dde1e5" : "#16283f";
-  const accent = "#3fab6c";
-  const fill = tone === "dark" ? "#142132" : "#f1f2f4";
+  const line = tone === "dark" ? "#e1e6e3" : "#091e49";
+  const accent = "#78b861";
+  const fill = tone === "dark" ? "#061532" : "#f3f6f4";
 
   return (
     <svg

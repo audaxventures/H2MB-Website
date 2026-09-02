@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { navLinks, headerCta } from "@/content/config";
@@ -12,7 +13,6 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
-  const isHome = pathname === "/";
 
   // Close the mobile menu when the route changes, without a setState-in-effect:
   // detect the pathname change during render (a sanctioned React pattern for
@@ -24,12 +24,11 @@ export default function Header() {
   }
 
   useEffect(() => {
-    if (!isHome) return;
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, [isHome]);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -49,20 +48,26 @@ export default function Header() {
     };
   }, [menuOpen]);
 
-  const transparent = isHome && !scrolled && !menuOpen;
-
   return (
     <header className="fixed inset-x-0 top-0 z-50 w-full">
       <div
         className={cn(
-          "transition-colors duration-300",
-          transparent ? "bg-transparent" : "bg-navy-950/97 backdrop-blur",
-          !transparent && "shadow-[0_1px_0_0_rgba(255,255,255,0.08)]",
+          "border-b bg-white/95 backdrop-blur transition-shadow duration-300",
+          scrolled || menuOpen
+            ? "border-linegrey shadow-[0_2px_12px_rgba(4,13,32,0.06)]"
+            : "border-transparent",
         )}
       >
-        <div className="mx-auto flex w-full max-w-content items-center justify-between px-6 py-4 md:px-10">
-          <Link href="/" className="font-display text-xl font-bold tracking-tight text-white">
-            H2MB
+        <div className="mx-auto flex w-full max-w-content items-center justify-between px-6 py-3 md:px-10">
+          <Link href="/" className="shrink-0">
+            <Image
+              src="/images/logo.png"
+              alt="H2MB"
+              width={1258}
+              height={376}
+              priority
+              className="h-8 w-auto md:h-10"
+            />
           </Link>
 
           <nav aria-label="Primary" className="hidden lg:flex lg:items-center lg:gap-8">
@@ -74,8 +79,8 @@ export default function Header() {
                   href={link.href}
                   aria-current={active ? "page" : undefined}
                   className={cn(
-                    "text-sm font-medium uppercase tracking-wide text-white/80 transition-colors hover:text-white",
-                    active && "text-white",
+                    "text-sm font-medium uppercase tracking-wide text-navy-900/75 transition-colors hover:text-navy-950",
+                    active && "text-navy-950",
                   )}
                 >
                   {link.label}
@@ -92,7 +97,7 @@ export default function Header() {
 
           <button
             type="button"
-            className="inline-flex items-center justify-center p-2 text-white lg:hidden"
+            className="inline-flex items-center justify-center p-2 text-navy-950 lg:hidden"
             aria-expanded={menuOpen}
             aria-controls="mobile-nav"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -106,7 +111,7 @@ export default function Header() {
       <div
         id="mobile-nav"
         className={cn(
-          "fixed inset-x-0 top-[65px] bottom-0 z-40 bg-navy-950 lg:hidden",
+          "fixed inset-x-0 top-[57px] bottom-0 z-40 bg-white lg:hidden",
           menuOpen ? "block" : "hidden",
         )}
       >
@@ -115,7 +120,7 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="border-b border-white/10 py-4 font-display text-2xl font-medium uppercase text-white"
+              className="border-b border-linegrey py-4 font-display text-2xl font-medium uppercase text-navy-950"
             >
               {link.label}
             </Link>

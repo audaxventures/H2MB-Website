@@ -62,7 +62,7 @@ export default function AboutPage() {
 
       <Section id="mission-vision" background="grey">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <div className="flex flex-col gap-4 border border-linegrey bg-white p-8 md:p-10">
+          <div className="flex flex-col gap-4 rounded-xl border border-linegrey bg-white p-8 md:p-10">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-h2green-600">
               Our Mission
             </p>
@@ -71,7 +71,7 @@ export default function AboutPage() {
               Manitoba&rsquo;s energy future.
             </p>
           </div>
-          <div className="flex flex-col gap-4 border border-linegrey bg-white p-8 md:p-10">
+          <div className="flex flex-col gap-4 rounded-xl border border-linegrey bg-white p-8 md:p-10">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-h2green-600">
               Our Vision
             </p>

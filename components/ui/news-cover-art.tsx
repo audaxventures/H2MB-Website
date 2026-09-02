@@ -2,8 +2,8 @@ import type { NewsCategory } from "@/content/types";
 import { cn } from "@/lib/cn";
 
 const categoryAccent: Record<NewsCategory, string> = {
-  "H2MB News": "#3fab6c",
-  Insights: "#dde1e5",
+  "H2MB News": "#78b861",
+  Insights: "#e1e6e3",
   Media: "#93a4b8",
 };
 
@@ -41,7 +41,7 @@ export function NewsCoverArt({
       preserveAspectRatio="xMidYMid slice"
       viewBox="0 0 400 260"
     >
-      <rect width="400" height="260" fill="#0f1c2e" />
+      <rect width="400" height="260" fill="#061532" />
       <g stroke={accent} strokeOpacity="0.55" strokeWidth="1.5">
         <line x1={x1} y1={y1} x2={x1 + 220} y2={y1 + 40} />
         <line x1={x2} y1={y2 + 60} x2={x2 + 260} y2={y2 - 10} />

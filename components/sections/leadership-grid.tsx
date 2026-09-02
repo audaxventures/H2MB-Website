@@ -7,7 +7,7 @@ export function LeadershipGrid() {
   return (
     <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
       {leadership.map((person) => (
-        <div key={person.slug} className="flex flex-col gap-4 border border-linegrey bg-white">
+        <div key={person.slug} className="flex flex-col gap-4 overflow-hidden rounded-xl border border-linegrey bg-white">
           {person.headshot.isPlaceholder ? (
             <AvatarPlaceholder name={person.name} />
           ) : (

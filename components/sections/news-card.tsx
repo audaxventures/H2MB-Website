@@ -64,7 +64,7 @@ export function NewsCard({ article, featured = false }: { article: NewsArticle; 
   );
 
   const className =
-    "group flex h-full flex-col border border-linegrey bg-white transition-shadow hover:shadow-[0_8px_30px_rgba(15,28,46,0.08)]";
+    "group flex h-full flex-col overflow-hidden rounded-xl border border-linegrey bg-white transition-shadow hover:shadow-[0_8px_30px_rgba(15,28,46,0.08)]";
 
   if (external) {
     return (

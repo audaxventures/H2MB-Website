@@ -1,25 +1,31 @@
 @import "tailwindcss";
 
 @theme {
-  /* Primary — deep navy / near-black */
-  --color-navy-950: #0a1420;
-  --color-navy-900: #0f1c2e;
-  --color-navy-800: #16283f;
-  --color-navy-700: #1f3652;
-  --color-navy-600: #2b4666;
+  /* Primary — deep navy, derived from the real H2MB logo blue (#0f3a90,
+     hue ~220°) darkened toward near-black for large section backgrounds.
+     navy-600 sits close to the literal logo blue for accent/link use. */
+  --color-navy-950: #040d20;
+  --color-navy-900: #061532;
+  --color-navy-800: #091e49;
+  --color-navy-700: #0d2b68;
+  --color-navy-600: #113a8d;
 
-  /* Accent — H2MB green (placeholder brand hex, see docs/build-log.md) */
-  --color-h2green-700: #146138;
-  --color-h2green-600: #1b7a45;
-  --color-h2green-500: #279256;
-  --color-h2green-400: #3fab6c;
-  --color-h2green-100: #e3f2e8;
-  --color-h2green-50: #f2f9f4;
+  /* Accent — H2MB green, derived from the real logo green (#609b4a, hue
+     ~104°). h2green-600/700 are darkened from the literal logo green so
+     text/button use clears WCAG AA contrast (the literal logo green only
+     hits ~3.3:1 on white — see docs/build-log.md); h2green-400/500 stay
+     closer to the true logo tone for decorative/large-text and dark-bg use. */
+  --color-h2green-700: #3b632c;
+  --color-h2green-600: #497b37;
+  --color-h2green-500: #5e9e47;
+  --color-h2green-400: #78b861;
+  --color-h2green-100: #dbecd5;
+  --color-h2green-50: #f0f7ed;
 
   /* Backgrounds */
-  --color-warmwhite: #faf8f4;
-  --color-coolgrey: #f1f2f4;
-  --color-linegrey: #dde1e5;
+  --color-warmwhite: #ffffff;
+  --color-coolgrey: #f3f6f4;
+  --color-linegrey: #e1e6e3;
 
   /* Text */
   --color-ink-900: #12181f;

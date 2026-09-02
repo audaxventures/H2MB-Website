@@ -314,6 +314,69 @@ brief's Section 14 checklist):
 - [ ] CMS provider decision, if/when H2MB wants to move content management
       off local TypeScript files — see `docs/cms-notes.md` for the
       field-by-field migration mapping already prepared for this
-- [ ] The exact H2MB brand green hex — the current accent
-      (`--color-h2green-*` in `app/globals.css`) is a placeholder chosen to
-      match the brief's direction, not a confirmed brand value
+- [ ] ~~The exact H2MB brand green hex~~ — resolved in Stage 14 below using
+      the real logo file.
+
+## Stage 14 — Real brand assets + visual restyle
+
+H2MB supplied the real logo (`public/images/logo.png`), a favicon mark
+(`public/images/favicon.png`) and a homepage hero photo
+(`public/images/homepagehero.png`), plus a reference screenshot of a
+brighter, cleaner visual direction to apply to the homepage.
+
+- **Real brand colors.** Sampled the logo's actual pixel colors
+  (green `#609b4a`, blue `#0f3a90`) and rebuilt the `navy-*`/`h2green-*`
+  token scales in `app/globals.css` from those hues via HSL, replacing the
+  earlier placeholder hexes everywhere (including the hardcoded values in
+  the SVG art components, which can't use Tailwind classes). One real
+  constraint surfaced by this: the literal logo green only reaches ~3.3:1
+  contrast against white, which fails WCAG AA's 4.5:1 for normal text —
+  used as-is, it would have broken every green button label and eyebrow
+  across the site. `h2green-600`/`700` are darkened variants of the same
+  hue/saturation that clear AA (verified with the same axe-core scan used
+  throughout this build — still 0 violations across every page);
+  `h2green-400`/`500` stay closer to the literal logo tone for
+  decorative/large-text and dark-background use where the contrast math
+  works out fine.
+- **Real logo in the header,** replacing the text "H2MB" wordmark. This
+  also meant reworking the header itself: a colorful logo doesn't read
+  well against a transparent-then-navy scrolling header, so the header is
+  now a permanent white bar (subtle shadow on scroll) instead of the
+  earlier transparent-over-hero pattern — simpler, and matches the
+  brighter direction H2MB asked for.
+- **Homepage hero rebuilt** around the real photo: a two-column layout
+  (headline/copy/CTAs on white, photo in a rounded frame on the right,
+  stacking on mobile) replacing the previous full-bleed dark-navy hero
+  with the original SVG art. Kept the brief's exact approved headline and
+  body copy — this was a visual-style change, not a content change (per
+  explicit direction: match the reference's style, keep the approved
+  copy).
+- **Disclosure note on the hero photo.** It depicts hydrogen storage/
+  production equipment (tanks, a labeled shipping-container unit) in a
+  way that reads as an operating facility — exactly what the brief's
+  imagery policy (Section 4) says to avoid for a not-yet-built Phase 1
+  project. Flagged this explicitly before using it; applied the site's
+  existing `ConceptualRenderingLabel` badge and a plain-language caption
+  to it as a light-touch mitigation, consistent with how every other
+  facility visual on this site is already labeled. This should still be
+  confirmed with H2MB: if the photo is stock/illustrative, the label is
+  the right call; if it's a real approved rendering, H2MB may prefer
+  different treatment.
+- **Rounded corners system-wide.** The original build used sharp/square
+  cards per the brief's explicit "avoid a SaaS aesthetic with oversized
+  rounded cards" guidance. The new reference direction is more rounded
+  (icon-in-circle cards, `rounded-xl` panels, `rounded-md` buttons) —
+  applied consistently across `IconCard`, `ProcessDiagram`,
+  `OpportunityDiagram`, `NewsCard`, `FeaturedStory`, `LeadershipGrid`,
+  `PartnerPathwayCards`, and the remaining ad-hoc bordered panels on
+  About/Hydrogen/Contact, so the whole site reads as one system rather
+  than the homepage looking like a different product.
+- **Real icon/favicon and OG image.** Removed the generated `app/icon.tsx`
+  placeholder in favor of the real `favicon.png` (referenced via
+  `metadata.icons`). `app/opengraph-image.tsx` now embeds the real logo
+  (read from disk and inlined as a base64 data URI, since `next/og`'s
+  `ImageResponse` needs a self-contained image source) instead of a text
+  wordmark.
+- Re-verified after all of the above: `build`/`typecheck`/`lint` clean,
+  and a full axe-core accessibility re-scan across every page — still 0
+  violations.

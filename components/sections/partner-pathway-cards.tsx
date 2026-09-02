@@ -7,7 +7,7 @@ export function PartnerPathwayCards() {
       {partnerPathways.map((pathway) => (
         <div
           key={pathway.id}
-          className="flex h-full flex-col justify-between gap-6 border border-linegrey bg-white p-6 md:p-7"
+          className="flex h-full flex-col justify-between gap-6 rounded-xl border border-linegrey bg-white p-6 md:p-7"
         >
           <div className="flex flex-col gap-3">
             <h3 className="font-display text-lg font-semibold text-navy-950">{pathway.title}</h3>

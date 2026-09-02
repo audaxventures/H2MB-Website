@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { MapPin, Zap, TrendingUp } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
@@ -10,8 +11,9 @@ import { DevelopmentTimeline } from "@/components/sections/development-timeline"
 import { EcosystemDisplay } from "@/components/sections/ecosystem-section";
 import { NewsCard } from "@/components/sections/news-card";
 import { PartnerCta } from "@/components/sections/partner-cta";
-import { PrairieHorizon } from "@/components/art/prairie-horizon";
 import { GridPattern } from "@/components/art/grid-pattern";
+import { ConceptualRenderingLabel } from "@/components/ui/conceptual-rendering-label";
+import { ImageCaption } from "@/components/ui/image-caption";
 import { ctaLabels } from "@/content/config";
 import { homeFacilityCapabilities, homeProcessSteps } from "@/content/facility";
 import { homeAdvantagePoints } from "@/content/manitoba-advantage";
@@ -60,18 +62,15 @@ export default function Home() {
   return (
     <>
       {/* Section 1 — Hero */}
-      <section className="relative flex min-h-[92vh] items-center overflow-hidden bg-navy-950 pt-24 text-white">
-        <PrairieHorizon className="absolute inset-0 h-full w-full" />
-        <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-navy-950/10" aria-hidden="true" />
-        <Container className="relative">
-          <div className="max-w-2xl">
-            <Eyebrow light className="mb-5">
-              H2MB
-            </Eyebrow>
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold uppercase leading-[1.03] tracking-tight text-balance">
-              Building Manitoba&rsquo;s Green Hydrogen Future.
+      <section className="relative overflow-hidden bg-white pt-28 pb-16 md:pt-36 md:pb-24">
+        <Container className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-10">
+          <div>
+            <Eyebrow className="mb-5">H2MB</Eyebrow>
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-semibold uppercase leading-[1.05] tracking-tight text-balance">
+              <span className="text-navy-950">Building Manitoba&rsquo;s </span>
+              <span className="text-h2green-600">Green Hydrogen Future.</span>
             </h1>
-            <p className="mt-7 max-w-xl text-base md:text-lg leading-relaxed text-white/80">
+            <p className="mt-7 max-w-xl text-base md:text-lg leading-relaxed text-ink-700">
               H2MB is developing green hydrogen production and distribution infrastructure in
               Manitoba, beginning with our proposed Phase 1 facility in Winnipeg.
             </p>
@@ -79,10 +78,27 @@ export default function Home() {
               <Button href="/our-facility" variant="primary" analyticsLabel={ctaLabels.exploreFacility}>
                 {ctaLabels.exploreFacility}
               </Button>
-              <Button href="/about" variant="ghost-light" analyticsLabel={ctaLabels.aboutH2mb}>
+              <Button href="/about" variant="secondary" analyticsLabel={ctaLabels.aboutH2mb}>
                 {ctaLabels.aboutH2mb}
               </Button>
             </div>
+          </div>
+          <div className="relative">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl sm:aspect-[16/11]">
+              <Image
+                src="/images/homepagehero.png"
+                alt="Conceptual rendering of green hydrogen production and storage infrastructure on the Manitoba prairie. This image does not depict an existing or operating H2MB facility."
+                fill
+                priority
+                sizes="(min-width: 1024px) 55vw, 100vw"
+                className="object-cover"
+              />
+              <ConceptualRenderingLabel />
+            </div>
+            <ImageCaption>
+              Conceptual illustration of green hydrogen production, storage and distribution
+              infrastructure — not a photo of an existing or operating H2MB facility.
+            </ImageCaption>
           </div>
         </Container>
       </section>
